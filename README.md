@@ -3,7 +3,7 @@ Stems
 
 ##What is it?
 
-StemsとはESXi-VMs statisticsをもじった名前でESXi上の仮想マシンのデータとHostサーバーのデータを取得し、Googleスプレッドシートを仕様し、グラフ化するRubyアプリケーションです。  
+StemsとはESXi-VMs statisticsをもじった名前でESXi上の仮想マシンのデータとHostサーバーのデータを取得し、Googleスプレッドシートを使用し、グラフ化するRubyアプリケーションです。  
 
 動作確認はruby 2.0.0p481及びruby 2.1.0ですがruby 1.9.3でも動くと思います。
 
@@ -38,6 +38,7 @@ Rubyのインストールは省きます。
 >>Stems::CountersHostオブジェクトを取得します
 ####　CountersVms
 >>Stems::CountersVmsオブジェクトを取得します
+
 ###Stems::HostSystem
 >>ESXiホストの情報を取得するオブジェクトです
 ####cpuUsed
@@ -66,6 +67,7 @@ Rubyのインストールは省きます。
 >>メモリの空きを取得します(MB)
 ####uptime
 >>稼働時間を取得します(sec)
+
 ###Stems::Vms
 >>Stems::Vms::Vmオブジェクトを取得するオブジェクトです
 ####vm(num)
@@ -76,6 +78,7 @@ Rubyのインストールは省きます。
 >>現在稼働中の仮想マシンのオブジェクトを取得します(Array)
 ####operatingNum
 >>現在稼働中の仮想マシンの数を取得します
+
 ###Stems::Vms::Vm
 >>仮想マシンを情報を取得するオブジェクトです
 ####name
@@ -98,12 +101,14 @@ Rubyのインストールは省きます。
 >>メモリの使用率を取得します(MB)
 ####uptime
 >>稼働時間を取得します(sec)
+
 ###Stems::CountersHost
 >>ホストのパフォーマンスカウンタを取得するオブジェクトです
 ####counter(metrics)
 >>任意のカウンタを取得します
 ####power
 >>ホストの消費電力を取得します
+
 ###Stems::CountersVms
 >>仮想マシンのパフォーマンスカウンタを取得するオブジェクトです
 ####counter(metrics)
