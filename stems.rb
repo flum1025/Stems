@@ -29,10 +29,10 @@ data = [
   Time.now.strftime("%Y-%m-%d %H:%M:%S"),
   stems.HostSystem.cpuUsed,
   stems.HostSystem.cpuFree,
-  stems.HostSystem.cpuRatio,
+  stems.HostSystem.cpuRatio*100,
   stems.HostSystem.memoryUsed,
   stems.HostSystem.memoryFree,
-  stems.HostSystem.memoryRatio,
+  stems.HostSystem.memoryRatio*100,
   stems.HostSystem.uptime,
   stems.Vms.operatingNum,
   stems.CountersHost.power
@@ -57,10 +57,10 @@ stems.Vms.operatingVms.each do |vmu|
     vm.name,
     vm.cpuUsed,
     (stems.HostSystem.cpuMhz * vm.cpuThreads) - vm.cpuUsed,
-    vm.cpuUsed / (stems.HostSystem.cpuMhz * vm.cpuThreads).to_f,
+    (vm.cpuUsed / (stems.HostSystem.cpuMhz * vm.cpuThreads).to_f)*100,
     vm.memoryUsed,
     vm.memoryFree,
-    vm.memoryRatio,
+    vm.memoryRatio*100,
     vm.uptime,
     stems.CountersVms.power[vm.name]["power.power"][0]
   ]
