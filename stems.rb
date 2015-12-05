@@ -22,7 +22,7 @@ sqlite = SQLite3::Database.open(File.join(path, 'data/data.db'))
 #sqlite.execute "CREATE TABLE IF NOT EXISTS vms(date TEXT, name TEXT, cpuUsed TEXT, cpuFree TEXT, cpuRatio TEXT, memoryUsed TEXT, memoryFREE TEXT, memoryRatio TEXT, uptime TEXT, w TEXT)"
 
 ###Stems初期化 引数はRbVmomi::VIM.connectする時と同じ引数
-stems = Stems.new host: '', port: 443, user: '', password: '',  insecure: true
+stems = Stems.new host: '', user: '', password: '',  insecure: true
 
 ###hostデータ作成
 data = [
@@ -42,7 +42,7 @@ data = [
 sqlite.execute"INSERT INTO host VALUES(?,?,?,?,?,?,?,?,?,?)", data
 
 ###SpreadSheetに一日分を保存(10分ごとにcronしてる場合)
-if spreadSheet.num_rows > 145
+if spreadSheet.num_rows >= 145
   spreadSheet.write(sqlite.execute "SELECT * FROM host ORDER BY DATE DESC LIMIT 144")
 else
   spreadSheet.hostPush data
@@ -65,7 +65,7 @@ stems.Vms.operatingVms.each do |vmu|
     stems.CountersVms.power[vm.name]["power.power"][0]
   ]
   sqlite.execute"INSERT INTO vms VALUES(?,?,?,?,?,?,?,?,?,?)", data
-  if spreadSheet.num_rows > 145
+  if spreadSheet.num_rows >= 145
     spreadSheet.write(sqlite.execute "SELECT * FROM vms WHERE name = '#{vm.name}' ORDER BY DATE DESC LIMIT 144")
   else
     spreadSheet.vmPush data
