@@ -2,13 +2,14 @@
 path = File.expand_path('../', __FILE__)
 require File.join(path, 'core/Stems.rb')
 require File.join(path, 'core/SpreadSheet.rb')
+require File.join(path, 'data/setting.rb')
 require 'sqlite3'
 
 ###SpreadSheet設定
-client_id     = ""
-client_secret = ""
-refresh_token = ""
-spread_id = ""
+client_id     = CLIENT_ID
+client_secret = CLIENT_SECRET
+refresh_token = REFRESH_TOKEN
+spread_id = SPREAD_ID
 ###ここまで
 
 ###SpreadSheet初期化
@@ -22,7 +23,7 @@ sqlite = SQLite3::Database.open(File.join(path, 'data/data.db'))
 #sqlite.execute "CREATE TABLE IF NOT EXISTS vms(date TEXT, name TEXT, cpuUsed TEXT, cpuFree TEXT, cpuRatio TEXT, memoryUsed TEXT, memoryFREE TEXT, memoryRatio TEXT, uptime TEXT, w TEXT)"
 
 ###Stems初期化 引数はRbVmomi::VIM.connectする時と同じ引数
-stems = Stems.new host: '', user: '', password: '',  insecure: true
+stems = Stems.new host: HOST, user: USER, password: PASSWORD,  insecure: true
 
 ###hostデータ作成
 data = [
